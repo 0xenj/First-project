@@ -14,7 +14,7 @@ contract RusRoulette {
         maxChance = 10;
     }
 
-    function enter() public payable {
+    function putBullet() public payable {
         require(msg.value == 0.1 ether, "Il faut envoyer exactement 0,1 ETH.");
         jackpot += msg.value;
         trigger();
