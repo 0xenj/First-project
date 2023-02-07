@@ -14,10 +14,6 @@ describe("Roulette", function () {
   });
 
   it("Does deployer is owner ? (should be)", async function () {
-    expect(await contract.balanceOfJackpot()).to.equal("");
-
-    await contract.putBullet();
-
-    expect(await contract.balanceOfJackpot()).to.equal("0.1");
+    expect(await contract._owner()).to.equal("");
   });
-});
+})

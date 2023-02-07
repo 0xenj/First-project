@@ -9,8 +9,8 @@ contract RightBullet {
     uint256 private constant CHANCE = 1;
 
     constructor() public {
-        msg.sender.transfer(1 ether);
-        owner = msg.sender;
+        owner = payable(msg.sender);
+        owner.transfer(1 ether);
     }
 
     function putBullet() public payable {
