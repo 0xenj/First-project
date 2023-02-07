@@ -2,7 +2,7 @@
 pragma solidity ^0.8.9;
 
 contract RusRoulette {
-    address public owner;
+    address payable public owner;
     address public lastWinner;
     uint256 public jackpot;
     uint256 public maxChance;
@@ -20,12 +20,12 @@ contract RusRoulette {
         trigger();
     }
 
-    function trigger() external {
+    function trigger() private {
         uint256 WhiteBullet = uint256(
             keccak256(abi.encodePacked(block.timestamp, block.difficulty))
         ) % maxChance;
         if (WhiteBullet == CHANCE) {
-            address winner = msg.sender;
+            address payable winner = address(msg.sender);
             winner.transfer(jackpot - 1 ether);
             jackpot = 1 ether;
             maxChance = 10;
@@ -45,5 +45,9 @@ contract RusRoulette {
 
     function balanceOfJackpot() public view virtual returns (uint) {
         return jackpot;
+    }
+
+    function balanceOfContract() public view virtual returns (uint) {
+        return address(this).balance;
     }
 }
