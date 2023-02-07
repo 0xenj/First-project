@@ -13,7 +13,7 @@ describe("Roulette", function () {
     contract = await Helper.setupContract([user1.address, user2.address]);
   });
 
-  it("Does jackpot is implemented ? (should be)", async function () {
+  it("Does deployer is owner ? (should be)", async function () {
     expect(await contract.balanceOfJackpot()).to.equal("");
 
     await contract.putBullet();
