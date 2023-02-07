@@ -1,19 +1,19 @@
 const { expect } = require("chai");
-const { ethers } = require("hardhat");
-const Helper = require("./shared");
-let contract;
+const { loadFixture } = require("@nomicfoundation/hardhat-network-helpers");
 
-describe("Roulette", function () {
-  before(async function () {
-    [provider, owner, user1, user2, user3] =
-      await Helper.setupProviderAndAccount();
-  });
+describe("Bullet", function () {
+  async function deployContractFixture() {
+    const contract = await ethers.getContractFactory("Bullet");
+    const [owner, addr1, addr2] = await ethers.getSigners();
+    const bullet = await contract.deploy();
 
-  beforeEach(async function () {
-    contract = await Helper.setupContract([user1.address, user2.address]);
-  });
+    await bullet.deployed();
 
-  it("Does deployer is owner ? (should be)", async function () {
-    expect(await contract._owner()).to.equal("");
+    return { contract, bullet, owner, addr1, addr2 };
+  }
+
+  it("Owner is msg.sender ? (should be)", async function () {
+    const { bullet, owner } = await loadFixture(deployContractFixture);
+    expect(await bullet.owner()).to.equal(owner);
   });
-})
+});

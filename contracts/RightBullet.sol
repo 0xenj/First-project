@@ -2,40 +2,41 @@
 pragma solidity ^0.8.9;
 
 contract RightBullet {
-    address payable public owner;
-    address public lastWinner;
+    address payable public _owner;
+    address payable public winner;
+    address public _lastWinner;
     uint256 public constant JACKPOT = 0.06 ether;
     uint256 private constant MAXCHANCE = 6;
     uint256 private constant CHANCE = 1;
 
     constructor() public {
-        owner = payable(msg.sender);
-        owner.transfer(1 ether);
+        _owner = payable(msg.sender);
+        _owner.transfer(1 ether);
     }
 
     function putBullet() public payable {
         require(msg.value == 0.01 ether, "Il faut envoyer exactement 0,01 ETH.");
-        owner.transfer(msg.value);
+        _owner.transfer(msg.value);
         trigger();
     }
 
     function trigger() private {
         uint256 WhiteBullet = uint256(
-            keccak256(abi.encodePacked(block.timestamp, block.prevrandao))
+            keccak256(abi.encodePacked(block.timestamp, block.difficulty))
         ) % MAXCHANCE;
         if (WhiteBullet == CHANCE) {
-            address payable winner = address(msg.sender);
+            winner = payable(msg.sender);
             winner.transfer(JACKPOT);
-            lastWinner = winner;
+            _lastWinner = winner;
         }
     }
 
-    function _owner() public view virtual returns (address payable) {
-        return owner;
+    function owner() public view virtual returns (address payable) {
+        return _owner;
     }
 
-    function _lastWinner() public view virtual returns (address payable) {
-        return lastWinner;
+    function lastWinner() public view virtual returns (address) {
+        return _lastWinner;
     }
 
     function balanceOfJackpot() public view virtual returns (uint) {
