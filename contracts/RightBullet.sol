@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.9;
 
-contract RusRoulette {
+contract RightBullet {
     address payable public owner;
     address public lastWinner;
     uint256 public jackpot;
