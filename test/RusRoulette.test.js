@@ -1,6 +1,6 @@
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
-const { Helper } = require("./shared/setup");
+const Helper = require("./shared/setup");
 
 describe("RightBullet", function () {
   before(async function () {
