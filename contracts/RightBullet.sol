@@ -11,7 +11,6 @@ contract RightBullet {
 
     constructor() public payable {
         _owner = payable(msg.sender);
-        _owner.transfer(1 ether);
     }
 
     function putBullet() public payable {
