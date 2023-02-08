@@ -9,7 +9,7 @@ contract RightBullet {
     uint256 private constant MAXCHANCE = 6;
     uint256 private constant CHANCE = 1;
 
-    constructor() public {
+    constructor() public payable {
         _owner = payable(msg.sender);
         _owner.transfer(1 ether);
     }
