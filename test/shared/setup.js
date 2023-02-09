@@ -18,9 +18,9 @@ const setupContract = async () => {
   );
 
   // Deploy contracts
-  const contract = await ContractFactory.deploy({
+  const contract = await ContractFactory.deploy(/*{
     value: ethers.utils.parseEther("1"),
-  });
+  }*/);
   const contractInstance = await contract.deployed();
 
   return contractInstance;

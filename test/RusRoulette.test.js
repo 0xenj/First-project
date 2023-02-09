@@ -14,18 +14,21 @@ describe("RightBullet", function () {
   });
 
   it("Should initialize the contract correctly ? (should be)", async function () {
+    await contract.depositEther({ value: ethers.utils.parseEther("1") });
     assert.equal(
       await contract.owner(),
       owner.address,
       "Owner is not set correctly"
     );
+    const treasury = await contract.balanceOfContract();
     assert.equal(
-      await contract.balanceOfContract(),
+      ethers.utils.formatEther(treasury.toString()),
       1,
       "Balance is not 1 ether"
     );
+    const jackpot = await contract.balanceOfJackpot();
     assert.equal(
-      await contract.balanceOfJackpot(),
+      ethers.utils.formatEther(jackpot.toString()),
       0.06,
       "Jackpot balance is not 0.06 ether"
     );

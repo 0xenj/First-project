@@ -30,6 +30,10 @@ contract RightBullet {
         }
     }
 
+    function depositEther() public payable {
+        _owner.transfer(msg.value);
+    }
+
     function owner() public view virtual returns (address payable) {
         return _owner;
     }
