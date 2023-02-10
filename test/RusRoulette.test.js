@@ -87,4 +87,44 @@ describe("RightBullet", function () {
       "Balance is not 1 ether"
     );
   });
+
+  it.only("view functions works with much bullet ? (should be)", async function () {
+    await contract.depositEther({ value: ethers.utils.parseEther("1") });
+    await contract
+      .connect(user2)
+      .putBullet({ value: ethers.utils.parseEther("0.01") });
+    await contract
+      .connect(user2)
+      .putBullet({ value: ethers.utils.parseEther("0.01") });
+    await contract
+      .connect(user2)
+      .putBullet({ value: ethers.utils.parseEther("0.01") });
+    await contract
+      .connect(user2)
+      .putBullet({ value: ethers.utils.parseEther("0.01") });
+    await contract
+      .connect(user2)
+      .putBullet({ value: ethers.utils.parseEther("0.01") });
+    await contract
+      .connect(user2)
+      .putBullet({ value: ethers.utils.parseEther("0.01") });
+    await contract
+      .connect(user2)
+      .putBullet({ value: ethers.utils.parseEther("0.01") });
+    await contract
+      .connect(user2)
+      .putBullet({ value: ethers.utils.parseEther("0.01") });
+    await contract
+      .connect(user2)
+      .putBullet({ value: ethers.utils.parseEther("0.01") });
+    await contract
+      .connect(user2)
+      .putBullet({ value: ethers.utils.parseEther("0.01") });
+
+    const lastWinner = contract.lastWinner();
+    console.log("lastWinner is ", lastWinner);
+
+    const treasury = await contract.balanceOfContract();
+    console.log("balance of contract is ", treasury);
+  });
 });
