@@ -14,7 +14,9 @@ describe("RightBullet", function () {
   });
 
   it("Should initialize the contract correctly ? (should be)", async function () {
-    await contract.depositEther({ value: ethers.utils.parseEther("1") });
+    await contract
+      .connect(user1)
+      .depositEther({ value: ethers.utils.parseEther("1") });
     assert.equal(
       await contract.owner(),
       owner.address,

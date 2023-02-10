@@ -9,13 +9,12 @@ contract RightBullet {
     uint256 private constant MAXCHANCE = 6;
     uint256 private constant CHANCE = 1;
 
-    constructor() public payable {
+    constructor() {
         _owner = payable(msg.sender);
     }
 
     function putBullet() public payable {
         require(msg.value == 0.01 ether, "Il faut envoyer exactement 0,01 ETH.");
-        _owner.transfer(msg.value);
         trigger();
     }
 
@@ -30,14 +29,12 @@ contract RightBullet {
         }
     }
 
-    function depositEther() public payable {
-        _owner.transfer(msg.value);
+    function depositEther() external payable {
     }
 
-    function owner() public view virtual returns (address payable) {
+    function owner() public view virtual returns (address) {
         return _owner;
     }
-
     function lastWinner() public view virtual returns (address) {
         return _lastWinner;
     }
