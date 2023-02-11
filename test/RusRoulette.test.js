@@ -88,7 +88,7 @@ describe("RightBullet", function () {
     );
   });
 
-  it.only("view functions works with much bullet ? (should be)", async function () {
+  it("view functions works with much bullet ? (should be)", async function () {
     await contract.depositEther({ value: ethers.utils.parseEther("1") });
     await contract
       .connect(user2)
@@ -121,8 +121,17 @@ describe("RightBullet", function () {
       .connect(user2)
       .putBullet({ value: ethers.utils.parseEther("0.01") });
 
-    const lastWinner = contract.lastWinner();
-    console.log("lastWinner is ", lastWinner);
+    assert.equal(
+      await contract.lastWinner(),
+      user2.address,
+      "User2 is not the lastWinner"
+    );
+
+    assert.equal(
+      await contract.owner(),
+      owner.address,
+      "Owner is not the owner"
+    );
 
     const treasury = await contract.balanceOfContract();
     console.log("balance of contract is ", treasury);
