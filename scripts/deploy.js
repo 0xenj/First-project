@@ -1,5 +1,7 @@
+const hre = require("hardhat");
+
 async function main() {
-  const contract = await ethers.getContractFactory("RightBullet");
+  const contract = await hre.ethers.getContractFactory("RightBullet");
   console.log("Deploying contract...");
   const rightBullet = await contract.deploy();
   await rightBullet.deployed();

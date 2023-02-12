@@ -32,7 +32,7 @@ module.exports = {
       chainId: 5,
       gas: 15000000,
       gasPrice: 2000000000,
-      accounts: [`${PRIVATE_KEY_GOERLI || DUMMY_PRIVATE_KEY}`],
+      accounts: [`${PRIVATE_KEY_GOERLI}`],
     },
   },
   etherscan: {
