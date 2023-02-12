@@ -14,7 +14,7 @@ contract RightBullet {
     }
 
     function putBullet() public payable {
-        require(msg.value == 0.01 ether, "Il faut envoyer exactement 0,01 ETH.");
+        require(msg.value == 0.01 ether, "You have to send exactly 0,01 ETH.");
         trigger();
     }
 
